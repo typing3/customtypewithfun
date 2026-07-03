@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pen</title>
+  </head>
+  <body>
+      <div class="hud-ambient-wash"></div>
+
+<!-- MAIN STICKY PRODUCTION GLOBAL HEADER CONTROL PANEL -->
+<header class="hud-global-header">
+  <div class="brand-monogram">TYPEWITHFUN // PRO</div>
+  <div class="clock-telemetry-module" id="hudClock">00:00:00</div>
+  <div class="calendar-status-pill">
+    <span class="active-pulse-dot"></span>
+    <span id="currentDayLabel" class="weekday-string">TODAY</span>
+  </div>
+</header>
+
+<!-- HERO SCREEN SUB-NAVIGATION HORIZONTAL MATRIX BAR -->
+<nav class="hud-horizontal-sub-nav">
+  <div class="sub-nav-wrapper">
+    <button onclick="jumpToWorkspacePage(0)" class="sub-nav-link active-tab" data-tab="0"><span>SPEED TEST</span></button>
+    <button onclick="jumpToWorkspacePage(1)" class="sub-nav-link" data-tab="1"><span>ACCURACY DRILL</span></button>
+    <button onclick="jumpToWorkspacePage(2)" class="sub-nav-link" data-tab="2"><span>CUSTOM QUOTE</span></button>
+    <button onclick="jumpToWorkspacePage(3)" class="sub-nav-link" data-tab="3"><span>SCORE MATRIX</span></button>
+  </div>
+</nav>
+
+<!-- MAIN WIDE PAGED INTERFACE WINDOWS SYSTEM SLIDER TRACK -->
+<main class="hud-pages-viewport" id="pagesTrack">
+  
+  <!-- ==================== WORKSPACE 01: SPEED TEST MODULE ==================== -->
+  <section class="hud-page-view">
+    <div class="static-production-grid-matrix">
+      
+      <div class="static-glass-card size-double-height">
+        <span class="node-serial-id">TYP // 01</span>
+        <h1 class="hud-main-heading">Velocity <br><span class="serif-glint-accent">Sprint Test</span></h1>
+        <p class="hud-description-text">Type the words inside the canvas to the right. The 30-second timer will initiate automatically upon your very first key stroke.</p>
+        <button class="hud-action-btn" onclick="resetSpeedTestGame()">RESET SPRINT</button>
+      </div>
+      
+      <div class="static-glass-card size-wide-input-block typing-arena-card">
+        <span class="node-serial-id">TYP // 02</span>
+        <span class="module-section-title">Active Words Canvas</span>
+        <div class="word-display-field" id="speedWordsDisplay">Click input and type...</div>
+        <input type="text" class="hud-line-input type-input-matrix" id="speedInputBox" placeholder="Type here to start tracking..." autocomplete="off">
+      </div>
+      
+      <div class="static-glass-card">
+        <span class="node-serial-id">TYP // 03</span>
+        <span class="module-section-title">Speed Rate</span>
+        <div class="metric-center-layout">
+          <div class="circular-dial-container"><div class="center-metric-readout" id="wpmDisplay">00</div></div>
+        </div>
+        <span class="metric-footer-label">WORDS PER MINUTE (WPM)</span>
+      </div>
+      
+      <div class="static-glass-card">
+        <span class="node-serial-id">TYP // 04</span>
+        <span class="module-section-title">Sprint Timer</span>
+        <div class="metric-center-layout">
+          <div class="circular-dial-container"><div class="center-metric-readout" id="timerDisplay">30s</div></div>
+        </div>
+        <span class="metric-footer-label">SECONDS SECURE GAP</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== WORKSPACE 02: ACCURACY DRILL ==================== -->
+  <section class="hud-page-view">
+    <div class="static-production-grid-matrix">
+      
+      <div class="static-glass-card size-double-height">
+        <span class="node-serial-id">ACC // 01</span>
+        <h1 class="hud-main-heading">Precision <br><span class="serif-glint-accent">Drill Core</span></h1>
+        <p class="hud-description-text">A high-stakes precision matrix. Any typo made will lock the string box. Maintain absolute flawless accuracy to register metrics into the live leaderboard queue.</p>
+        <button class="hud-action-btn" onclick="resetAccuracyDrillGame()">RESET DRILL</button>
+      </div>
+      
+      <div class="static-glass-card size-wide-input-block typing-arena-card">
+        <span class="node-serial-id">ACC // 02</span>
+        <span class="module-section-title">Hardcore Accuracy Target</span>
+        <div class="word-display-field" id="accuracyWordsDisplay">Focus parameter tracking stream...</div>
+        <input type="text" class="hud-line-input type-input-matrix" id="accuracyInputBox" placeholder="Type with zero mistakes..." autocomplete="off">
+      </div>
+      
+      <div class="static-glass-card size-wide-input-block">
+        <span class="node-serial-id">ACC // 03</span>
+        <span class="module-section-title">Accuracy Metric Board</span>
+        <div class="metric-center-layout" style="flex-direction: row; gap: 40px;">
+          <div class="circular-dial-container"><div class="center-metric-readout" id="accuracyPctDisplay">100%</div></div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div class="log-row"><span>ERRORS FOUND // </span><span id="errorCountDisplay" style="color: #ff4757; font-weight: bold;">00</span></div>
+            <div class="log-row"><span>COMBO RATIO // </span><span id="comboCountDisplay" style="color: #00ffaa; font-weight: bold;">00</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== WORKSPACE 03: CUSTOM QUOTE TESTING ==================== -->
+  <section class="hud-page-view">
+    <div class="static-production-grid-matrix">
+      
+      <div class="static-glass-card size-double-height">
+        <span class="node-serial-id">CST // 01</span>
+        <h1 class="hud-main-heading">Custom <br><span class="serif-glint-accent">Quote Engine</span></h1>
+        <p class="hud-description-text">Paste or type your own custom sentences inside the lower sandbox console block. The system will automatically convert your text into a private typing test track.</p>
+      </div>
+      
+      <div class="static-glass-card size-wide-input-block">
+        <span class="node-serial-id">CST // 02</span>
+        <span class="module-section-title">Quote Blueprint Sandbox Field</span>
+        <textarea class="hud-custom-textarea" id="customQuoteCreator" placeholder="Paste your own text payload string here to generate a customized typing map..."></textarea>
+      </div>
+      
+      <div class="static-glass-card size-wide-input-block typing-arena-card">
+        <span class="node-serial-id">CST // 03</span>
+        <span class="module-section-title">Generated Sandbox Sandbox Canvas</span>
+        <div class="word-display-field" id="customWordsDisplay">Your custom layout text array will render here...</div>
+        <input type="text" class="hud-line-input type-input-matrix" id="customInputBox" placeholder="Inject quote first then type..." autocomplete="off" disabled>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== WORKSPACE 04: HISTORICAL SCORE BOARD ==================== -->
+  <section class="hud-page-view">
+    <div class="static-production-grid-matrix">
+      
+      <div class="static-glass-card size-double-height">
+        <span class="node-serial-id">LOG // 01</span>
+        <h1 class="hud-main-heading">Analytical <br><span class="serif-glint-accent">Score Matrix</span></h1>
+        <p class="hud-description-text">An integrated statistics matrix tracking your best sessions. Every time you successfully clear a speed test or precision run, your metrics log right onto this page array.</p>
+        <button class="hud-action-btn" onclick="wipeScoreboardMatrixLogs()">PURGE LOGS</button>
+      </div>
+      
+      <div class="static-glass-card size-wide-input-block scroll-card-box">
+        <span class="node-serial-id">LOG // 02</span>
+        <span class="module-section-title">Session High Scores Historical Feed</span>
+        <div class="active-task-list-container" id="scoreboardLogsContainer">
+          <!-- Populated dynamically via gameplay completion scripts -->
+        </div>
+      </div>
+      
+      <div class="static-glass-card">
+        <span class="node-serial-id">LOG // 03</span>
+        <span class="module-section-title">Hardware Performance Link</span>
+        <div class="telemetry-log-lines">
+          <div class="log-row"><span>ENGINE // TYPING FPS 120</span><span class="dot-green"></span></div>
+          <div class="log-row"><span>INPUT LATENCY // 1.2ms</span><span class="dot-green"></span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- FLOATING INTERACTIVE RIGHT STEPPER NAVIGATION BUTTON ARROW -->
+<button class="hud-right-nav-arrow" onclick="stepToNextWorkspacePage()" aria-label="Next Module Screen">
+  <svg class="arrow-svg-icon" viewBox="0 0 24 24">
+    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<div class="hud-bottom-page-index-tracker">TYPEWITHFUN MATRIX LABS // ACTIVE STAGE: <span id="pageNumIndicator">1</span> OF 4</div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
